@@ -8,12 +8,12 @@
     tools:context=".Login">
 
     <EditText
-        android:id="@+id/Loginusername"
+        android:id="@+id/Loginemail"
         android:layout_width="282dp"
         android:layout_height="57dp"
         android:background="@drawable/input_bg"
         android:ems="10"
-        android:hint="Username"
+        android:hint="Email"
         android:inputType="text"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
@@ -45,7 +45,7 @@
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.393" />
+        app:layout_constraintVertical_bias="0.399" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/Login"
@@ -55,6 +55,7 @@
         android:text="Login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -92,10 +93,10 @@
         android:paddingLeft="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.557">
+        app:layout_constraintVertical_bias="0.559">
 
         <TextView
             android:id="@+id/textView6"
@@ -110,7 +111,12 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Signup"
-            android:textColor="#EF27EF" />
+            android:textColor="#BB80F6" />
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
