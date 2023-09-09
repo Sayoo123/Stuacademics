@@ -36,7 +36,7 @@ public class Registeration extends AppCompatActivity {
         confirm_password=findViewById(R.id.Register_confirmpassword);
         register=findViewById(R.id.Register);
         mAuth= FirebaseAuth.getInstance();
-        bar=findViewById(R.id.progress_bar);
+        //bar=findViewById(R.id.progress_bar);
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
         TextView tologin=findViewById(R.id.backtologin);
         tologin.setOnClickListener(new View.OnClickListener() {
@@ -49,7 +49,7 @@ public class Registeration extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bar.setVisibility(View.VISIBLE);
+                //bar.setVisibility(View.VISIBLE);
                 String emailauth,passwordauth,cr_password_auth;
                 emailauth=String.valueOf(email.getText());
                 passwordauth=String.valueOf(password.getText());
@@ -74,7 +74,7 @@ public class Registeration extends AppCompatActivity {
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                bar.setVisibility(View.GONE);
+                                //bar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
                                     Toast.makeText(Registeration.this, "Registered Successfully.",Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(Registeration.this, Login.class));

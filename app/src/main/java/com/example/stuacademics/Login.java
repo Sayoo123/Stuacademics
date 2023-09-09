@@ -44,7 +44,7 @@ FirebaseAuth mAuth;
         TextView reg=findViewById(R.id.Signup);
         email=findViewById(R.id.Loginemail);
         password=findViewById(R.id.Loginpassword);
-        bar=findViewById(R.id.progress_bar);
+       // bar=findViewById(R.id.progress_bar);
         logintomain=findViewById(R.id.Login);
         mAuth=FirebaseAuth.getInstance();
         reg.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +56,7 @@ FirebaseAuth mAuth;
         logintomain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bar.setVisibility(View.VISIBLE);
+                //bar.setVisibility(View.VISIBLE);
                 String emailauth,passwordauth;
                 emailauth=String.valueOf(email.getText());
                 passwordauth=String.valueOf(password.getText());
@@ -76,7 +76,7 @@ FirebaseAuth mAuth;
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                bar.setVisibility(View.GONE);
+                                //bar.setVisibility(View.GONE);
                                 if (task.isSuccessful()) {
                                     Toast.makeText(Login.this, "LOGGED IN",Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(Login.this, MainActivity.class));
@@ -84,8 +84,7 @@ FirebaseAuth mAuth;
                                 } else {
                                     // If sign in fails, display a message to the user.
 
-                                    Toast.makeText(Login.this, "LOGIN FAILED",
-                                            Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Login.this, "LOGIN FAILED", Toast.LENGTH_SHORT).show();
 
                                 }
                             }
