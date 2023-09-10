@@ -23,7 +23,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.ktx.Firebase;
 
 public class Login extends AppCompatActivity {
-EditText email,password;
+    EditText email;
+EditText password;
 ProgressBar bar;
 Button logintomain;
 FirebaseAuth mAuth;
@@ -80,6 +81,8 @@ FirebaseAuth mAuth;
                                 if (task.isSuccessful()) {
                                     Toast.makeText(Login.this, "LOGGED IN",Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(Login.this, MainActivity.class));
+                                    email.setText("");
+                                    password.setText("");
 
                                 } else {
                                     // If sign in fails, display a message to the user.

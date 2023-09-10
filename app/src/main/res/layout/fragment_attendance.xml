@@ -4,18 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B1C111"
     tools:context=".AttendanceFragment">
 
-    <TextView
-        android:id="@+id/textview"
-        android:layout_width="254dp"
-        android:layout_height="41dp"
-        android:paddingLeft="20dp"
-        android:text="Attendance"
-        android:textSize="34sp"
+    <com.journeyapps.barcodescanner.CompoundBarcodeView
+        android:id="@+id/barcode_scanner"
+        android:layout_width="383dp"
+        android:layout_height="352dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.142" />
 </androidx.constraintlayout.widget.ConstraintLayout>

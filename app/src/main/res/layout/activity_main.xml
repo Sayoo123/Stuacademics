@@ -19,4 +19,5 @@
         app:headerLayout="@layout/header_dim"
         app:menu="@menu/navigation_items"/>
 
+
 </androidx.drawerlayout.widget.DrawerLayout>

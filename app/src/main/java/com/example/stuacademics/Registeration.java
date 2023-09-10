@@ -26,6 +26,7 @@ public class Registeration extends AppCompatActivity {
     EditText email,password,confirm_password;
     Button register;
     ProgressBar bar;
+
     FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

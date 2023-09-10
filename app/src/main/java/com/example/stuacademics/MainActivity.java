@@ -11,10 +11,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 DrawerLayout drawerLayout;
@@ -41,12 +43,16 @@ Toolbar toolbar;
                 if(id==R.id.Attendance)
                 {
                     loadFragment(new AttendanceFragment());
+
+
                 } else if (id==R.id.Placement_prediction) {
 
                 }
                 else if(id==R.id.logout)
                 {
-
+                    FirebaseAuth.getInstance().signOut();
+                    startActivity(new Intent(MainActivity.this,Login.class));
+                    finish();
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
