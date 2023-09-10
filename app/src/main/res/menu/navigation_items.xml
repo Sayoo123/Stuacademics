@@ -8,7 +8,7 @@
     android:id="@+id/Placement_prediction"
     android:title="Placements"
     android:icon="@drawable/baseline_favorite_24"
-    />
+   />
 <item
     android:id="@+id/logout"
     android:title="Logout"
