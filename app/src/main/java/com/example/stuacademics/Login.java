@@ -25,6 +25,7 @@ import com.google.firebase.ktx.Firebase;
 public class Login extends AppCompatActivity {
     EditText email;
 EditText password;
+static String valid_email;
 ProgressBar bar;
 Button logintomain;
 FirebaseAuth mAuth;
@@ -81,6 +82,7 @@ FirebaseAuth mAuth;
                                 if (task.isSuccessful()) {
                                     Toast.makeText(Login.this, "LOGGED IN",Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(Login.this, MainActivity.class));
+                                    valid_email=email.getText().toString();
                                     email.setText("");
                                     password.setText("");
 
