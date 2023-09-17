@@ -13,13 +13,16 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 DrawerLayout drawerLayout;
+
 NavigationView navigationView;
 Toolbar toolbar;
     @Override
@@ -29,10 +32,9 @@ Toolbar toolbar;
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
         drawerLayout=findViewById(R.id.drawerLayout);
         navigationView=findViewById(R.id.navigation_view);
+//        getSupportFragmentManager().beginTransaction().add(R.id.container, AttendanceFragment.newInstance(name),"AttendanceFragment").commit();
         toolbar=findViewById(R.id.toolbar);
-
         setSupportActionBar(toolbar);
-
         ActionBarDrawerToggle toggle= new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.OpenDrawer,R.string.CloseDrawer);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
