@@ -96,6 +96,7 @@ FirebaseAuth mAuth;
                         });
             }
         });
+
     }
 
 }

@@ -5,18 +5,30 @@
     android:id="@+id/attendance"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".AttendanceFragment">
+
+<!--    <SurfaceView-->
+<!--        android:id="@+id/surface"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <com.journeyapps.barcodescanner.CompoundBarcodeView
         android:id="@+id/barcode_scanner"
-        android:layout_width="383dp"
-        android:layout_height="352dp"
+        android:layout_width="306dp"
+        android:layout_height="289dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.142" />
-
+        app:layout_constraintVertical_bias="0.142"
+        app:zxing_use_texture_view="false"
+        app:zxing_preview_scaling_strategy="centerCrop"/>
     <Button
         android:id="@+id/retry"
         android:layout_width="wrap_content"

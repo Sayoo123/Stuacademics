@@ -1,22 +1,18 @@
 package com.example.stuacademics;
 
-import android.app.Activity;
-import android.content.Intent;
+
+import android.graphics.Rect;
+import android.hardware.Camera;
 import android.os.Bundle;
 
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
-
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -29,13 +25,13 @@ import com.google.firebase.database.ValueEventListener;
 import com.journeyapps.barcodescanner.BarcodeCallback;
 import com.journeyapps.barcodescanner.BarcodeResult;
 
-import com.journeyapps.barcodescanner.CaptureManager;
+import com.journeyapps.barcodescanner.BarcodeView;
+import com.journeyapps.barcodescanner.CameraPreview;
 import com.journeyapps.barcodescanner.CompoundBarcodeView;
 
-import java.text.SimpleDateFormat;
 
 public  class AttendanceFragment extends Fragment {
-    private static final String ARG_PARAM1 = "edttext";
+    private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
@@ -68,10 +64,8 @@ public  class AttendanceFragment extends Fragment {
         db=FirebaseDatabase.getInstance().getReference();
         barcodeScanner=view.findViewById(R.id.barcode_scanner);
         reset=view.findViewById(R.id.retry);
-        barcodeScanner.setStatusText(mParam1);
+        barcodeScanner.setStatusText("");
         barcodeScanner.decodeSingle(callback);
-
-
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,7 +110,6 @@ public  class AttendanceFragment extends Fragment {
         super.onPause();
         barcodeScanner.pause();
     }
-
 
 }
 
