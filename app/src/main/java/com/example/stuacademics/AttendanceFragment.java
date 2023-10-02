@@ -1,6 +1,7 @@
 package com.example.stuacademics;
 
 
+import android.content.Intent;
 import android.graphics.Rect;
 import android.hardware.Camera;
 import android.os.Bundle;
@@ -41,6 +42,7 @@ public  class AttendanceFragment extends Fragment {
     FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
     Button reset;
     public AttendanceFragment() {
+
     }
     public static AttendanceFragment newInstance(String param1) {
         AttendanceFragment fragment = new AttendanceFragment();
@@ -60,6 +62,8 @@ public  class AttendanceFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         View view = inflater.inflate(R.layout.fragment_attendance, container, false);
         db=FirebaseDatabase.getInstance().getReference();
         barcodeScanner=view.findViewById(R.id.barcode_scanner);

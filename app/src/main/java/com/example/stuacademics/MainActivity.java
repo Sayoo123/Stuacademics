@@ -1,11 +1,8 @@
 package com.example.stuacademics;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
-import androidx.core.view.GravityCompat;
 import androidx.core.view.WindowCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -13,74 +10,51 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
-
+import android.content.IntentSender;
+import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 
-import android.view.MenuItem;
-import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-
+import com.example.stuacademics.databinding.ActivityMainBinding;
+import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 
 public class MainActivity extends AppCompatActivity {
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
-
-    Toolbar toolbar;
-
+    ActivityMainBinding binding;
+    private static final int REQUEST_CHECK_SETTINGS = 0x1;
+    private LocationManager locationManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        MapsActivity m=new MapsActivity();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
-        drawerLayout=findViewById(R.id.drawerLayout);
-        navigationView=findViewById(R.id.navigation_view);
-//        getSupportFragmentManager().beginTransaction().add(R.id.container, AttendanceFragment.newInstance(name),"AttendanceFragment").commit();
-        toolbar=findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        ActionBarDrawerToggle toggle= new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.OpenDrawer,R.string.CloseDrawer);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int id=item.getItemId();
-                if(id==R.id.Attendance)
-                {
-                    loadFragment(new AttendanceFragment());
-
-
-                } else if (id==R.id.Placement_prediction) {
-
-                }
-                else if(id==R.id.logout)
-                {
-                    FirebaseAuth.getInstance().signOut();
-                    startActivity(new Intent(MainActivity.this,Login.class));
-                    finish();
-                }
-                drawerLayout.closeDrawer(GravityCompat.START);
-                return true;
+        binding.bottomNavigationView.setBackground(null);
+        binding.bottomNavigationView.setOnItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.Attendance) {
+                loadFragment(new AttendanceFragment());
+                Log.d("sa", "started");
             }
+
+            return true;
         });
-    }
 
-    @Override
-    public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START))
-        {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }else {
-            super.onBackPressed();
-        }
-    }
 
+
+    }
     private void loadFragment(Fragment fragment) {
-        FragmentManager fm= getSupportFragmentManager();
-        FragmentTransaction ft=fm.beginTransaction();
-        ft.add(R.id.container,fragment);
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.add(R.id.frame_layout, fragment);
         ft.commit();
     }
-
-
 }
