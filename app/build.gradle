@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.stuacademics"
-        minSdk 24
+        minSdk 26
         targetSdk 34
         versionCode 1
         versionName "1.0"
@@ -50,8 +50,9 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    implementation 'com.karumi:dexter:6.2.3'
-    implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
+
+    implementation 'com.google.android.gms:play-services-code-scanner:16.1.0'
+
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
     implementation 'com.google.android.gms:play-services-location:21.0.1'
 //    implementation 'androidx.work:work-runtime-ktx:2.8.1'

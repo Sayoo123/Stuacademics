@@ -5,7 +5,7 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- <uses-permission android:name="android.permission.CAMERA" /> -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
@@ -23,12 +23,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Stuacademics"
         tools:targetApi="31">
+        <activity
+            android:name=".MainActivity2"
+            android:exported="true" />
+        <activity
+            android:name=".Attendance"
+            android:exported="true" />
+
         <service
             android:name=".GoogleService"
             android:enabled="true"
             android:exported="true" />
 
-
+        <meta-data
+            android:name="com.google.mlkit.vision.DEPENDENCIES"
+            android:value="barcode_ui" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCTVfkc1t_18M_bZ_9wXmnsLuwBgDpaplE" />
@@ -41,14 +50,17 @@
             android:exported="true" />
         <activity
             android:name=".Splashscreen"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" android:exported="true"/>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"

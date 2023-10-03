@@ -48,10 +48,10 @@ public class GoogleService extends Service implements LocationListener {
     public void onCreate() {
         super.onCreate();
 
-        mTimer = new Timer();
-        mTimer.schedule(new TimerTaskToGetLocation(), 5, notify_interval);
+//        mTimer = new Timer();
+//        mTimer.schedule(new TimerTaskToGetLocation(), 5, notify_interval);
         intent = new Intent(str_receiver);
-//        fn_getlocation();
+        fn_getlocation();
     }
 
     @Override
@@ -83,39 +83,39 @@ public class GoogleService extends Service implements LocationListener {
 
         } else {
 
-            if (isNetworkEnable) {
-                location = null;
-                if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-                }
-                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, this);
-                if (locationManager != null) {
-                    location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                    if (location != null) {
-
-                        Log.e("latitude", location.getLatitude() + "");
-                        Log.e("longitude", location.getLongitude() + "");
-
-                        latitude = location.getLatitude();
-                        longitude = location.getLongitude();
-                        fn_update(location);
-                    }
-                }
-
-            }
+//            if (isNetworkEnable) {
+//                location = null;
+//                if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//
+//                }
+//                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, this);
+//                if (locationManager != null) {
+//                    location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+//                    if (location != null) {
+//
+////                        Log.e("latitude", location.getLatitude() + "");
+////                        Log.e("longitude", location.getLongitude() + "");
+//
+//                        latitude = location.getLatitude();
+//                        longitude = location.getLongitude();
+//                        fn_update(location);
+//                    }
+//                }
+//
+//            }
 
 
             if (isGPSEnable) {
                 location = null;
-                if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
                 }
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, this);
                 if (locationManager!=null){
                     location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                     if (location!=null){
-                        Log.d("latitude",location.getLatitude()+"");
-                        Log.d("longitude",location.getLongitude()+"");
+//                        Log.d("latitude",location.getLatitude()+"");
+//                        Log.d("longitude",location.getLongitude()+"");
                         latitude = location.getLatitude();
                         longitude = location.getLongitude();
                         fn_update(location);
@@ -128,27 +128,27 @@ public class GoogleService extends Service implements LocationListener {
 
     }
 
-    private class TimerTaskToGetLocation extends TimerTask{
-        @Override
-        public void run() {
-
-            mHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    fn_getlocation();
-                }
-            });
-
-        }
-    }
+//    private class TimerTaskToGetLocation extends TimerTask{
+//        @Override
+//        public void run() {
+//
+//            mHandler.post(new Runnable() {
+//                @Override
+//                public void run() {
+//                    fn_getlocation();
+//                }
+//            });
+//
+//        }
+//    }
 
     private void fn_update(Location location){
+//        Log.i("latitude",location.getLatitude()+"");
+//        Log.i("longitude",location.getLongitude()+"");
+        intent.putExtra("latutide",location.getLatitude()+"");
+        intent.putExtra("longitude",location.getLongitude()+"");
+        sendBroadcast(intent);
 
-//        intent.putExtra("latutide",location.getLatitude()+"");
-//        intent.putExtra("longitude",location.getLongitude()+"");
-//        sendBroadcast(intent);
-//        Log.d("latitude",String.valueOf(location.getLatitude()));
-//        Log.d("latitude",String.valueOf(location.getLongitude()));
     }
 
 
