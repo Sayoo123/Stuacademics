@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-feature android:name="android.hardware.camera" />
+
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <!-- <uses-permission android:name="android.permission.CAMERA" /> -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- <uses-permission android:name="android.permission.CAMERA" /> -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
@@ -23,25 +23,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Stuacademics"
         tools:targetApi="31">
-        <activity
-            android:name=".MainActivity2"
-            android:exported="true" />
-        <activity
-            android:name=".Attendance"
-            android:exported="true" />
-
         <service
             android:name=".GoogleService"
             android:enabled="true"
+            android:exported="true"></service>
+
+        <activity
+            android:name=".Attendance"
             android:exported="true" />
-
-        <meta-data
-            android:name="com.google.mlkit.vision.DEPENDENCIES"
-            android:value="barcode_ui" />
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCTVfkc1t_18M_bZ_9wXmnsLuwBgDpaplE" />
-
         <activity
             android:name=".Login"
             android:exported="true" />
