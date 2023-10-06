@@ -3,11 +3,11 @@
 <item
     android:id="@+id/Home"
     android:title="Home"
-    android:icon="@drawable/baseline_bookmark_24" />
+    android:icon="@drawable/baseline_home_24" />
 <item
     android:id="@+id/Academics"
     android:title="Academics"
-    android:icon="@drawable/baseline_favorite_24"
+    android:icon="@drawable/baseline_school_24"
    />
     <item
         android:id="@+id/placeHolder"
@@ -16,9 +16,9 @@
 <item
     android:id="@+id/Attendance"
     android:title="Attendance"
-    android:icon="@drawable/baseline_logout_24"/>
+    android:icon="@drawable/baseline_qr_code_scanner_24"/>
     <item
         android:id="@+id/Profile"
         android:title="Profile"
-        android:icon="@drawable/baseline_logout_24"/>
+        android:icon="@drawable/baseline_person_24"/>
 </menu>

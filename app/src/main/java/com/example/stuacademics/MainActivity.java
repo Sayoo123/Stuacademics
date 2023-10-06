@@ -38,13 +38,13 @@ import com.google.android.gms.tasks.Task;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
-    GoogleService g=new GoogleService();
+
     LocationManager locationManager;
     double longitude, latitude;
     Thread mythread;
     public static int REQUEST_CHECK_SETTINGS = 100;
     public int d=0;
-    @RequiresApi(api = Build.VERSION_CODES.Q)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,62 +68,22 @@ public class MainActivity extends AppCompatActivity {
 
                 else if(ContextCompat.checkSelfPermission(MainActivity.this,
                         android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                    checkpermission();
+                    CheckGps.CheckGpsOnOorNot(this);
                     Log.d("at attt","at else");
                 }
                 else {
-                    ActivityCompat.requestPermissions(this,
+                    ActivityCompat.requestPermissions(MainActivity.this,
                             new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION,
-                                    android.Manifest.permission.ACCESS_FINE_LOCATION,android.Manifest.permission.ACCESS_BACKGROUND_LOCATION},
+                                    android.Manifest.permission.ACCESS_FINE_LOCATION},
                             REQUEST_CHECK_SETTINGS);
                 }
+
             }
             return true;
         });
 
-
-
-
     }
 
-    public void checkpermission() {
-
-        Log.i("at check permission","at permission");
-
-        LocationRequest locationRequest = new LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 10000)
-                .setMinUpdateIntervalMillis(5000 / 2).build();
-        LocationSettingsRequest.Builder locationSettingsRequestBuilder = new LocationSettingsRequest.Builder();
-
-        locationSettingsRequestBuilder.addLocationRequest(locationRequest);
-        locationSettingsRequestBuilder.setAlwaysShow(true);
-
-        SettingsClient settingsClient = LocationServices.getSettingsClient(this);
-        Task<LocationSettingsResponse> task = settingsClient.checkLocationSettings(locationSettingsRequestBuilder.build());
-        task.addOnSuccessListener(this, new OnSuccessListener<LocationSettingsResponse>() {
-            @Override
-            public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
-            }
-        });
-
-        task.addOnFailureListener(this, new OnFailureListener() {
-
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                if (e instanceof ResolvableApiException) {
-                    try {
-
-                        ResolvableApiException resolvableApiException = (ResolvableApiException) e;
-                        resolvableApiException.startResolutionForResult(MainActivity.this,
-                                REQUEST_CHECK_SETTINGS);
-
-                    } catch (IntentSender.SendIntentException sendIntentException) {
-                        sendIntentException.printStackTrace();
-                    }
-                }
-            }
-        });
-
-    }
     private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -134,15 +94,19 @@ public class MainActivity extends AppCompatActivity {
                 double d = Distance.distance(latitude, longitude);
                 if (d < 0.300) {
                     Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
-                } else
-                    Toast.makeText(getApplicationContext(), "unsuccess", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this,Attendance.class));
+                }
+                else{
+                    startActivity(new Intent(MainActivity.this,NotCollegePremises.class));
+                }
+
             }
         }
     };
     @Override
     protected void onResume() {
         super.onResume();
-        registerReceiver(broadcastReceiver, new IntentFilter(GoogleService.str_receiver),RECEIVER_EXPORTED);
+        registerReceiver(broadcastReceiver, new IntentFilter(GoogleService.str_receiver));
     }
 
     @Override
@@ -157,13 +121,15 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CHECK_SETTINGS) {
             if (resultCode == RESULT_OK) {
-                Toast.makeText(this, "GPS on", Toast.LENGTH_SHORT).show();
-                mythread.interrupt();
+                Toast.makeText(getApplicationContext(), "GPS on", Toast.LENGTH_SHORT).show();
+                if(d!=0)
+                    mythread.interrupt();
+                d+=1;
             }
         }
         if (requestCode == REQUEST_CHECK_SETTINGS) {
             if (resultCode == RESULT_CANCELED)
-                Toast.makeText(this, "Turn On GPS ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Turn On GPS ", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -171,12 +137,18 @@ public class MainActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CHECK_SETTINGS) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                Toast.makeText(this, "Permission GRANTED", Toast.LENGTH_SHORT).show();
-                checkpermission();
+              CheckGps.CheckGpsOnOorNot(this);
             } else {
                 Toast.makeText(this, "Allow Location permission from Settings", Toast.LENGTH_SHORT).show();
+
             }
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
     }
 
 
